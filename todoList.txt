@@ -1,0 +1,55 @@
+TO DO LIST 
+
+OVERALL
+
+-commenter le code
+
+CSS :
+
+-Jolis transitions
+-Jolis animations
+-Responsive
+-decouper le css en component (POURQUOI CA MARCHE PAS ?!)
+
+JavaScript :
+
+-Changement de theme
+-bug suppr (si non a un truc et oui apres les deux suppr)
+-Sidenav pour le format talephone (responsive first)
+-page pour s'inscrire et floute l'écran
+
+PhP :
+-publier post 
+-lister les post 
+-suppr les posts
+-inscription connexion
+-page profil
+-on ajoute des medias 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  je suis dans les jalons qu'on recherche
+  petits trucs a ameliorer
+  continue comme CA
+  travail interressant et atise la curiosité
+  bonne presentation
+  ensemble positif
+
+  bonne presentation
+  projet deja bien avancé 
