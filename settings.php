@@ -10,6 +10,14 @@
 </head>
 <body>
 
+<?php
+
+//debut de session
+
+session_start(); 
+
+?>
+
   <div id="left">
 
     <div id="info_user">
@@ -23,7 +31,7 @@
 
     </div>
 
-    <a href="index.html">
+    <a href="index.php">
 
     <div class="left_button">
 
@@ -39,7 +47,7 @@
       
     </div>
 
-    <a href="settings.html">
+    <a href="settings.php">
       
       <div class="left_button">
 
@@ -54,7 +62,7 @@
 
     </div>
 
-    <a href="account.html">
+    <a href="account.php">
     <div class="left_button">
 
       connect

@@ -20,6 +20,7 @@ const verif_suppr = document.getElementById("verif_suppr")
 const suppr_oui = document.getElementById("suppr_oui")
 const suppr_non = document.getElementById("suppr_non")
 const input_post = document.getElementById("input_post")
+const suppr_oui_get_id = document.getElementById("suppr_oui_get_id")
 
 
 let active_tag = []
@@ -80,7 +81,6 @@ addEventListener('input', () =>{
 })
 tag_selector.addEventListener('change',() =>{
   localStorage.setItem("tag",tag_selector.selectedIndex)
-
 })
 
 
@@ -96,11 +96,15 @@ const clear_localstorage = () => {
 
 const deletePost = (element) =>{
   console.log(element)
+  let id = element.target.id
+  console.log(id)
+  suppr_oui_get_id.innerText= id
   verif_suppr.classList.remove("hidden")
   suppr_non.addEventListener('click',event=>{
     verif_suppr.classList.add("hidden")
   })
   suppr_oui.addEventListener('click', event=>{
+    
     verif_suppr.classList.add("hidden")
   })
   

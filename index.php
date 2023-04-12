@@ -10,6 +10,14 @@
 </head>
 <body>
 
+<?php
+
+//debut de session
+
+session_start(); 
+
+?>
+
   <div id="left">
 
     <div id="info_user">
@@ -23,7 +31,7 @@
 
     </div>
 
-    <a href="index.html">
+    <a href="index.php">
 
     <div class="left_button">
 
@@ -39,7 +47,7 @@
       
     </div>
 
-    <a href="settings.html">
+    <a href="settings.php">
       
       <div class="left_button">
 
@@ -54,7 +62,7 @@
 
     </div>
 
-    <a href="account.html">
+    <a href="account.php">
     <div class="left_button">
 
       connect
@@ -148,13 +156,10 @@
       <?php
 
       //SUPPRIMER UN POST
-      ini_set('display_errors', 0); 
-      if(isset($_POST['supprimer'])){
+      if(isset($_POST['delete'])){
         $id = $_POST['id_post'];
         $pdo->exec("DELETE FROM post WHERE post_id=$id");
       }
-      ini_set('display_errors', 1);
-  
       //SUPPRIMER UN POST
 
       //RECUPERE LES POST DANS LA TABLE
@@ -198,7 +203,7 @@
 
             </div>
 
-            <img class="poubelle" src="img/pbl.png" alt="poubelle">
+            <img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">
           </div>
 
         </div>
@@ -235,6 +240,7 @@
         <div id="suppr_oui">
 
           <form method="post">
+            <textarea name="id_post" id="suppr_oui_get_id" style="display: none;"></textarea>
             <input type="submit" name="delete" id="delete" >
           </form>
 
