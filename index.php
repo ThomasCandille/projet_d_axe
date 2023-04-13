@@ -21,10 +21,24 @@ session_start();
   <div id="left">
 
     <div id="info_user">
-      
-      <img id="icon_pp" src="img/pp_un.png" alt="pp">
-      <p id="user_username">xXUserXx</p>
-      
+
+    <?php
+
+    if(isset($_SESSION['pseudo'])){
+      echo'
+      <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
+      <p id="user_username">'.$_SESSION['pseudo'].'</p>
+      ';
+    }
+    else{
+      echo'
+      <img id="icon_pp" src="img/icon user.png" alt="pp">
+      <p id="user_username">no user</p>
+      '; 
+    }
+
+    ?>
+    
     </div>
 
     <div>
@@ -62,15 +76,33 @@ session_start();
 
     </div>
 
-    <a href="account.php">
-    <div class="left_button">
+    <?php
 
-      connect
-      
-    </div>
-    </a>
+    if(isset($_SESSION['pseudo'])){
+      echo'
+      <a href="account.php?dc=True">
+      <div class="left_button">
+  
+        deconnect
+        
+      </div>
+      </a>
+      ';
+    }
+    else{
+      echo'
+      <a href="account.php">
+      <div class="left_button">
+  
+        connect
+        
+      </div>
+      </a>';
+    }
+
+    ?>
     
-  </div>
+    </div>
 
   
 
@@ -147,7 +179,7 @@ session_start();
         $message = addslashes($_POST['post']);
         $like = 0;
         $tag = $_POST['tag_selector'];
-        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class) VALUES ('Tommahs','$message','$like','https://fastly.picsum.photos/id/253/200/200.jpg?hmac=_dceojr9yz5ZIKoye8I9HOqPCBHfn-jT9aRYdoLx1kQ','$tag','$tag')");
+        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag')");
       }
 
       ?>

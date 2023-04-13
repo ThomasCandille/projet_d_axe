@@ -153,8 +153,8 @@ if(isset($_GET['dc'])){
           $_SESSION['pseudo'] = $user_actual['user_name'];
           $_SESSION['mdp'] = $user_actual['user_password'];
           $_SESSION['mail'] = $user_actual['user_mail'];
-          $_SESSION['photo'] = $user_actual['user_photo'];
-          header("Location: index.php");
+          $_SESSION['photo'] = $user_actual['user_pp'];
+          header("Location:index.php");
 
           //CONNEXION A AMELIORER ( - SI PAS LES BONS IDENTIFIANTS / - VERIFIER POUR SESSION DANS INDEX)
 

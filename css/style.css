@@ -284,28 +284,10 @@ a{
   color: #729622;
 }
 
-#setting_color{
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(2 , var(--settings_button_width));
-  grid-template-rows: repeat(2 , var(--settings_button_height));
-
-}
 
 .poubelle{
   height: 4.5vh;
   width: 3vw;
-}
-
-.settings_color{
-  height: var(--settings_button_height);
-  width: var(--settings_button_width);
-  background-color: #272727;
-  display: flex;
-  border: 5px solid var(--backgroud_color);
-  border-radius: 25px;
-  align-items: center;
-  justify-content: center;
 }
 
 #container_post_txt{
@@ -432,7 +414,7 @@ a{
   align-items: center;
   justify-content: center;
   border-radius: 2vw;
-}
+} 
 
 #post_maker{
   position: fixed;
@@ -452,6 +434,34 @@ a{
   position:fixed;
   top: 20px;
   left: 20px;
+}
+
+#container_profil{
+  margin-top: 5vh;
+  background-color: #2f2f2f;
+  width: 50vw;
+  border-radius: 100px 0 100px 0;
+}
+
+#container_header_profil{
+  height: 15vh;
+  margin: 3vh 0 3vh 2vw;
+  display: flex;
+  flex-direction: row;
+}
+
+#container_header_profil > p{
+  margin: 0;
+}
+
+.container_info_profil{
+  width: 45vw;
+  height: 10vh;
+  margin-left: 2vw;
+}
+
+#container_post_profil{
+  margin: 10vh 0 10vh 0 ;
 }
 
 @media screen and (max-width: 768px){
@@ -540,3 +550,4 @@ a{
     border-radius: 15px;
   }
 }
+
