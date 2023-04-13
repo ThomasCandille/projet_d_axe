@@ -21,6 +21,7 @@ const suppr_oui = document.getElementById("suppr_oui")
 const suppr_non = document.getElementById("suppr_non")
 const input_post = document.getElementById("input_post")
 const suppr_oui_get_id = document.getElementById("suppr_oui_get_id")
+const connect_toi = document.getElementById("connect_toi")
 
 
 let active_tag = []
@@ -110,7 +111,14 @@ const deletePost = (element) =>{
   
 }
 
+const scroll_verif = () => {
+  let y = window.scrollY
+  if(y >= 800){
+    connect_toi.classList.remove("hidden")
+  }
+}
 
+window.addEventListener("scroll", scroll_verif)
 mid_post_maker.addEventListener('click',showMakePost)
 post_button.addEventListener('click', showMakePost)
 left_make_a_post.addEventListener('click',showMakePost)

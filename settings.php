@@ -21,10 +21,24 @@ session_start();
   <div id="left">
 
     <div id="info_user">
-      
-      <img id="icon_pp" src="img/pp_un.png" alt="pp">
-      <p id="user_username">xXUserXx</p>
-      
+
+    <?php
+
+    if(isset($_SESSION['pseudo'])){
+      echo'
+      <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
+      <p id="user_username">'.$_SESSION['pseudo'].'</p>
+      ';
+    }
+    else{
+      echo'
+      <img id="icon_pp" src="img/icon user.png" alt="pp">
+      <p id="user_username">no user</p>
+      '; 
+    }
+
+    ?>
+    
     </div>
 
     <div>
@@ -51,7 +65,7 @@ session_start();
       
       <div class="left_button">
 
-      Settings
+      Profil
       
     </div>
   
@@ -62,15 +76,33 @@ session_start();
 
     </div>
 
-    <a href="account.php">
-    <div class="left_button">
+    <?php
 
-      connect
-      
-    </div>
-    </a>
+    if(isset($_SESSION['pseudo'])){
+      echo'
+      <a href="account.php?dc=True">
+      <div class="left_button">
+  
+        deconnect
+        
+      </div>
+      </a>
+      ';
+    }
+    else{
+      echo'
+      <a href="account.php">
+      <div class="left_button">
+  
+        connect
+        
+      </div>
+      </a>';
+    }
+
+    ?>
     
-  </div>
+    </div>
 
   <div id="mid">
 
@@ -129,7 +161,7 @@ session_start();
           <?php
 
           if(isset($_SESSION['mdp'])){
-            echo $_SESSION['mdp'];
+            echo '**********';
           }
           else{
             echo'connectez vous !';
@@ -145,11 +177,27 @@ session_start();
 
     <div id="container_post_profil">
 
-    <p> Publication de <?php $_SESSION['pseudo'] ?> :</p>
+    <p> 
+
+      <?php 
+      
+      if(isset($_SESSION['pseudo'])){
+        echo'Publication de '.$_SESSION['pseudo'].' :';
+      }
+      else{
+        echo 'connectez vous !';
+      }
+      
+      ?>
+
+      
+    </p>
 
         <?php
 
         $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
+        if(isset($_SESSION['pseudo'])){
 
         $r = $pdo->query('SELECT * FROM post WHERE post_pseudo = \''.$_SESSION['pseudo'].'\'');
         $array_post = [];
@@ -198,6 +246,7 @@ session_start();
   
         </div>
         ';
+        }
         }
 
         ?>

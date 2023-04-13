@@ -28,10 +28,24 @@ if(isset($_GET['dc'])){
   <div id="left">
 
     <div id="info_user">
-      
-      <img id="icon_pp" src="img/pp_un.png" alt="pp">
-      <p id="user_username">xXUserXx</p>
-      
+
+      <?php
+
+      if(isset($_SESSION['pseudo'])){
+        echo'
+        <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
+        <p id="user_username">'.$_SESSION['pseudo'].'</p>
+        ';
+      }
+      else{
+        echo'
+        <img id="icon_pp" src="img/icon user.png" alt="pp">
+        <p id="user_username">no user</p>
+        '; 
+      }
+
+      ?>
+
     </div>
 
     <div>
@@ -58,7 +72,7 @@ if(isset($_GET['dc'])){
       
       <div class="left_button">
 
-      Settings
+      Profil
       
     </div>
   

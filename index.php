@@ -65,7 +65,7 @@ session_start();
       
       <div class="left_button">
 
-      Settings
+      Profil
       
     </div>
   
@@ -260,6 +260,43 @@ session_start();
     <div>
 
       <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
+
+    </div>
+
+    <div id="connect_toi" class="hidden">
+
+      <p id="connect_toi_content" style="visibility: hidden;">  
+
+      <?php
+
+      if(isset($_SESSION['pseudo'])){
+        echo $_SESSION['pseudo'];
+      }
+      else{
+        echo 'no_connect';
+      }
+
+      ?>
+      
+      <div id="connect_toi_txt">
+      <p>
+        Tu veux voir plus de contenu ?<br>
+
+        Créer to compte ou connecte toi pour continuer
+      </p>
+      </div>
+
+      <a href="account.php">
+      <div class="left_button">
+  
+        connect
+        
+      </div>
+      </a>
+
+      </p>
+
+
 
     </div>
 
