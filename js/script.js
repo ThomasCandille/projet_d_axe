@@ -25,7 +25,7 @@ const suppr_non = document.getElementById("suppr_non")
 const input_post = document.getElementById("input_post")
 const suppr_oui_get_id = document.getElementById("suppr_oui_get_id")
 const connect_toi = document.getElementById("connect_toi")
-
+const info_user = document.getElementById("info_user")
 
 let active_tag = []
 let active_post = []
@@ -122,7 +122,7 @@ const deletePost = (element) =>{
 
 const scroll_verif = () => {
   let y = window.scrollY
-  if(y >= 800){
+  if(y >= 500 && info_user.innerText=="no user"){
     connect_toi.classList.remove("hidden")
     left.classList.add("blur")
     mid.classList.add("blur")

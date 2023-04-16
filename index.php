@@ -61,14 +61,34 @@ session_start();
       
     </div>
 
-    <a href="settings.php">
+    <?php
+
+    if(isset($_SESSION['pseudo'])){
+
+      echo
+      '
+      <a href="settings.php">
       
       <div class="left_button">
 
       Profil
       
-    </div>
+      </div>
   
+      </a>
+      ';
+    }
+
+    ?>
+
+    <a href="profil.php">
+
+    <div class="left_button">
+
+    Profil
+
+    </div>
+
     </a>
     
 
@@ -125,7 +145,7 @@ session_start();
     
     </div>
 
-    <form id="post_maker" class="hidden" method="post"> 
+    <form id="post_maker" class="hidden" method="post" enctype="multipart/form-data"> 
 
       <div id="container_post_txt">
 
@@ -180,13 +200,41 @@ session_start();
       <?php 
 
       $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+      
+      
 
       if(isset($_POST['post_made']) && isset($_SESSION['pseudo'])){
         $message = addslashes($_POST['post']);
         $like = 0;
         $tag = $_POST['tag_selector'];
-        $file = $_POST['input_file'];
-        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class, post_file) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag','$file')");
+
+        if(isset($_FILES['input_file'])){
+          $files = $_FILES["input_file"];
+          $file_name = $files['name'];
+          $file_tmp = $files['tmp_name'];
+          $file_size = $files['size'];
+          
+
+          $possible_ext = ["jpg","jpeg","png","gif"];
+          $file_name_part = explode('.', $file_name);
+          $file_ext = strtolower(end($file_name_part));
+          if(!in_array($file_ext, $possible_ext)){
+            $files = null;
+          }
+
+          if($file_size >= 2000000){
+            $files = null;
+          }
+
+          move_uploaded_file($file_tmp, "img/".$file_name);
+        }
+        else{
+          $files = null;
+        }
+        
+
+
+        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class, post_file) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag','$file_name')");
       }
 
       ?>
@@ -223,6 +271,7 @@ session_start();
 
             <img class="profile_picture" src="'.$mess['post_pp'].'" alt="photo de profil">
             <p class="username"> '.$mess['post_pseudo'].' </p>
+            <p class="date_post">'.$mess['post_time'].'</p>
 
           </div>
 
@@ -236,6 +285,12 @@ session_start();
 
           </div>
 
+          <div class="container_img_post">
+
+          <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+
+          </div>
+
           <div class="post_end">
 
             <div class="tag_post '.$mess['post_tag'].'">
@@ -244,8 +299,12 @@ session_start();
 
             </div>
 
-            <img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">
-          </div>
+            ';
+            if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $mess['post_pseudo']){
+              echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+            }
+            echo '
+            </div>
 
         </div>
         

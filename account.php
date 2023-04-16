@@ -68,15 +68,25 @@ if(isset($_GET['dc'])){
       
     </div>
 
-    <a href="settings.php">
+    <?php
+
+    if(isset($_SESSION['pseudo'])){
+
+      echo
+      '
+      <a href="settings.php">
       
       <div class="left_button">
 
       Profil
       
-    </div>
+      </div>
   
-    </a>
+      </a>
+      ';
+    }
+
+    ?>
     
 
     <div>
