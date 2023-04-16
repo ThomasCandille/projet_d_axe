@@ -15,7 +15,10 @@ const post_container = document.getElementById("post_container")
 const icon_pp = document.getElementById("icon_pp")
 const user_username = document.getElementById("user_username")
 const mobile_menu = document.getElementById("mobile_menu")
+const leave_mobile_menu = document.getElementById("leave_mobile_menu")
 const left = document.getElementById("left")
+const mid = document.getElementById("mid")
+const right = document.getElementById("right")
 const verif_suppr = document.getElementById("verif_suppr")
 const suppr_oui = document.getElementById("suppr_oui")
 const suppr_non = document.getElementById("suppr_non")
@@ -86,7 +89,13 @@ tag_selector.addEventListener('change',() =>{
 
 
 const showLeft = () => {
-  left.style.display= "flex"
+  left.style.transform = "translateX(0%)"
+  leave_mobile_menu.style.visibility= "visible"
+}
+
+const hide_left = () =>{
+  left.style.transform = "translateX(-100%)"
+  leave_mobile_menu.style.visibility= "hidden"
 }
 
 const clear_localstorage = () => { 
@@ -115,6 +124,15 @@ const scroll_verif = () => {
   let y = window.scrollY
   if(y >= 800){
     connect_toi.classList.remove("hidden")
+    left.classList.add("blur")
+    mid.classList.add("blur")
+    right.classList.add("blur")
+  }
+  else{
+    connect_toi.classList.add("hidden")
+    left.classList.remove("blur")
+    mid.classList.remove("blur")
+    right.classList.remove("blur")
   }
 }
 
@@ -125,6 +143,7 @@ left_make_a_post.addEventListener('click',showMakePost)
 annuler.addEventListener('click', hideMakePost)
 clear.addEventListener('click', clearTags)
 mobile_menu.addEventListener('click',showLeft)
+leave_mobile_menu.addEventListener('click', hide_left)
 input_post.addEventListener('click', clear_localstorage)
 
 for (let i = 0; i < li_poubelle.length ; i++){

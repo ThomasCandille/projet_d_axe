@@ -203,7 +203,7 @@ if(isset($_GET['dc'])){
 
     <div id="form_connect" class="form_style hidden">
 
-    <div class="container">
+    <div id="container_form_connect" class="container hidden">
 
       <p> Log In</p>
 
@@ -249,7 +249,7 @@ if(isset($_GET['dc'])){
 
     <div id="form_subscribe" class="form_style hidden" style="margin: 0;">
 
-      <div class="container">
+      <div id="container_form_subscribe" class="container hidden">
         <p> Subscribe</p>
         <form class="form-horizontal" method="post">
   
@@ -317,11 +317,23 @@ if(isset($_GET['dc'])){
 
   </div>
 
+  
+
+      <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
+
+    
+
+    
+
+      <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
+
+    
+
   <div id="right">
 
   </div>
 
-  <script src="js/settings.js"></script>
+  <script src="js/account.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

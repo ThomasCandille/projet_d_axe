@@ -133,6 +133,12 @@ session_start();
         
       </div>
 
+      <div id="container_input_file">
+
+        <input id="input_file" type="file" name="input_file" >
+
+        </div>
+
       <div class="post_actions_container">
 
         <div>
@@ -153,7 +159,7 @@ session_start();
 
           </select>
 
-        </div>
+        </div> 
 
         <div id="annuler">
 
@@ -175,11 +181,12 @@ session_start();
 
       $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
-      if(isset($_POST['post_made'])){
+      if(isset($_POST['post_made']) && isset($_SESSION['pseudo'])){
         $message = addslashes($_POST['post']);
         $like = 0;
         $tag = $_POST['tag_selector'];
-        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag')");
+        $file = $_POST['input_file'];
+        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class, post_file) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag','$file')");
       }
 
       ?>
@@ -201,6 +208,8 @@ session_start();
       array_push($array_post, $mess);
       }
       //RECUPERE LES POST DANS LA TABLE
+
+      $array_post = array_reverse($array_post);
 
       //PUBLIER UN POST
       foreach($array_post as $mess){
@@ -251,54 +260,23 @@ session_start();
 
     </div>
 
-    <div>
+    
 
       <img id="post_button" src="img/make_a_post.png" alt="fait un post">
 
-    </div>
+    
 
-    <div>
+    
 
       <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
 
-    </div>
+    
 
-    <div id="connect_toi" class="hidden">
+    
 
-      <p id="connect_toi_content" style="visibility: hidden;">  
+      <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
 
-      <?php
-
-      if(isset($_SESSION['pseudo'])){
-        echo $_SESSION['pseudo'];
-      }
-      else{
-        echo 'no_connect';
-      }
-
-      ?>
-      
-      <div id="connect_toi_txt">
-      <p>
-        Tu veux voir plus de contenu ?<br>
-
-        Créer to compte ou connecte toi pour continuer
-      </p>
-      </div>
-
-      <a href="account.php">
-      <div class="left_button">
-  
-        connect
-        
-      </div>
-      </a>
-
-      </p>
-
-
-
-    </div>
+    
 
     <div id="verif_suppr" class="hidden">
 
@@ -400,6 +378,43 @@ session_start();
     </div>
 
   </div>
+
+  <div id="connect_toi" class="hidden">
+
+<p id="connect_toi_content" style="visibility: hidden;">  
+
+<?php
+
+if(isset($_SESSION['pseudo'])){
+  echo $_SESSION['pseudo'];
+}
+else{
+  echo 'no_connect';
+}
+
+?>
+
+<div id="connect_toi_txt">
+<p>
+  Tu veux voir plus de contenu ?<br>
+
+  Créer to compte ou connecte toi pour continuer
+</p>
+</div>
+
+<a href="account.php">
+<div class="left_button">
+
+  connect
+  
+</div>
+</a>
+
+</p>
+
+
+
+</div>
 
   <script src="js/script.js"></script>
 </body>

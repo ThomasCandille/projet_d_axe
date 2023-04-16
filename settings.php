@@ -109,7 +109,16 @@ session_start();
     <div id="container_profil">
 
       <div id="container_header_profil">
-      <img class="profile_picture" src="https://fastly.picsum.photos/id/221/200/200.jpg?hmac=zy33VSww4_QQk0Hf2MngBaudI_ahiadnRwuREDTbWnA" alt="photo">
+      <img class="profile_picture" src=
+      <?php 
+      if(isset($_SESSION['photo'])){
+        echo $_SESSION['photo'];
+      }
+      else{
+        echo 'img/icon user.png';
+      } 
+       ?> 
+      alt="photo">
       <p>
         User profile :
       </p>
@@ -253,6 +262,18 @@ session_start();
 
     </div>
 
+    
+
+      <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
+
+    
+
+    
+
+      <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
+
+    
+
   </div>
 
   <div id="right">
@@ -260,6 +281,6 @@ session_start();
   </div>
 
 
-  <script src="js/script.js"></script>
+  <script src="js/settings.js"></script>
 </body>
 </html>
