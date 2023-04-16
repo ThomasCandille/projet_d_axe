@@ -220,6 +220,7 @@ a{
   max-width: 15%;
   border-radius: 100%;
   margin-right: 2vw;
+  border: solid 4px black;
 }
 
 .post{
@@ -608,7 +609,7 @@ a{
 }
 
 .imported_img{
-  width: 60%;
+  width: 80%;
   border-radius: 15px;
 }
 

@@ -74,7 +74,7 @@ if(isset($_GET['dc'])){
 
       echo
       '
-      <a href="settings.php">
+      <a href="profil.php">
       
       <div class="left_button">
 
@@ -88,11 +88,11 @@ if(isset($_GET['dc'])){
 
     ?>
 
-    <a href="profil.php">
+    <a href="pseudo.php">
 
     <div class="left_button">
 
-    Profil
+    Pseudo
 
     </div>
 

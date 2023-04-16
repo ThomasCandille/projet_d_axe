@@ -67,7 +67,7 @@ session_start();
 
       echo
       '
-      <a href="settings.php">
+      <a href="profil.php">
       
       <div class="left_button">
 
@@ -81,11 +81,11 @@ session_start();
 
     ?>
 
-    <a href="profil.php">
+    <a href="pseudo.php">
 
     <div class="left_button">
 
-    Profil
+    Pseudo
 
     </div>
 

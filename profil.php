@@ -15,7 +15,6 @@
 //debut de session
 
 session_start(); 
-$pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 ?>
 
@@ -68,7 +67,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
       echo
       '
-      <a href="settings.php">
+      <a href="profil.php">
       
       <div class="left_button">
 
@@ -82,19 +81,15 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
     ?>
 
-    <a href="profil.php">
+    <a href="pseudo.php">
 
     <div class="left_button">
 
-    Profil
+    Pseudo
 
     </div>
 
     </a>
-
-    <div>
-      
-    </div>
     
 
     <div>
@@ -131,68 +126,95 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
   <div id="mid">
 
-  <div class="search_profil">
+    <div id="container_profil">
 
-  <form id="profil" action="profil.php">
-    <textarea name="profil" id="textarea_profil" cols="30" rows="1" placeholder="Recherche"></textarea>
-    <input type="submit" name="redirect">
-  </form>
-
-  <?php 
-
-  
-  if(isset($_POST['redirect'])){
-    $loc = $_POST['profil'];
-    header('Location=profil.php?profil='.$loc.'');
-  }
-
-
-  
-  ?>
-
-</div>
-
-<?php
-
-if(isset($_GET['profil'])){
-
-$r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\'');
-      $user = [];
-      while($mess = $r->fetch(PDO::FETCH_ASSOC)){
-      array_push($user, $mess);
+      <div id="container_header_profil">
+      <img class="profile_picture" src=
+      <?php 
+      if(isset($_SESSION['photo'])){
+        echo $_SESSION['photo'];
       }
-}
-?>
+      else{
+        echo 'img/icon user.png';
+      } 
+       ?> 
+      alt="photo">
+      <p>
+        User profile :
+      </p>
+    </div>
 
-<div id="container_profil"  <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
+      <div class="container_info_profil">
+        <p>
 
-  <div id="container_header_profil">
+          Username :
 
-    <img class="profile_picture" src=" <?php echo $user[0]['user_pp']; ?>" alt="user_pp">
-    <p> User profile :</p>
+          <?php
 
-  </div>
+          if(isset($_SESSION['pseudo'])){
+            echo $_SESSION['pseudo'];
+          }
+          else{
+            echo'connectez vous !';
+          }
 
-  <div class="container_info_profil">
+          ?>
 
-    <p> Username : <?php echo $user[0]['user_name']; ?> </p>
+        </p>
+      </div>
 
-  </div>
+      <div class="container_info_profil">
+        <p>
 
-</div>
+          Email : 
 
+          <?php
 
-<div id="container_post_profil" <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
+          if(isset($_SESSION['mail'])){
+            echo $_SESSION['mail'];
+          }
+          else{
+            echo'connectez vous !';
+          }
+
+          ?>
+
+        </p>
+      </div>
+
+      <div class="container_info_profil">
+        <p>
+
+          mdp : 
+
+          <?php
+
+          if(isset($_SESSION['mdp'])){
+            echo '**********';
+          }
+          else{
+            echo'connectez vous !';
+          }
+
+          ?>
+
+        </p>
+      </div>
+      
+
+    </div>
+
+    <div id="container_post_profil">
 
     <p> 
 
       <?php 
       
-      if($_GET['profil'] != ''){
-        echo'Publication de '.$_GET['profil'].' :';
+      if(isset($_SESSION['pseudo'])){
+        echo'Publication de '.$_SESSION['pseudo'].' :';
       }
       else{
-        echo 'Cet utilisateur n\' a encore rien posté ou n\'existe pas';
+        echo 'connectez vous !';
       }
       
       ?>
@@ -202,9 +224,11 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
         <?php
 
-        if(isset($_GET['profil'])){
+        $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
-        $r = $pdo->query('SELECT * FROM post WHERE post_pseudo = \''.$_GET['profil'].'\'');
+        if(isset($_SESSION['pseudo'])){
+
+        $r = $pdo->query('SELECT * FROM post WHERE post_pseudo = \''.$_SESSION['pseudo'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
@@ -221,6 +245,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
   
               <img class="profile_picture" src="'.$mess['post_pp'].'" alt="photo de profil">
               <p class="username"> '.$mess['post_pseudo'].' </p>
+              <p class="date_post">'.$mess['post_time'].'</p>
   
             </div>
   
@@ -234,6 +259,12 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
   
             </div>
   
+            <div class="container_img_post">
+  
+            <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+  
+            </div>
+  
             <div class="post_end">
   
               <div class="tag_post '.$mess['post_tag'].'">
@@ -242,8 +273,12 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
   
               </div>
   
-              <img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">
-            </div>
+              ';
+              if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $mess['post_pseudo']){
+                echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+              }
+              echo '
+              </div>
   
           </div>
           
@@ -258,17 +293,25 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
     </div>
 
+    
+
+      <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
+
+    
+
+    
+
+      <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
+
+    
+
   </div>
-
-  <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
-
-
-  <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
 
   <div id="right">
 
   </div>
 
-  <script src="js/profil.js"></script>
+
+  <script src="js/settings.js"></script>
 </body>
 </html>
