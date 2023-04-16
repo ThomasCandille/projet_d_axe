@@ -82,6 +82,16 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
     ?>
 
+    <a href="profil.php">
+
+    <div class="left_button">
+
+    Profil
+
+    </div>
+
+    </a>
+
     <div>
       
     </div>
@@ -154,7 +164,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 }
 ?>
 
-<div id="container_profil"  <?php if($_GET['profil'] =='') {echo 'class="hidden"'; } ?>>
+<div id="container_profil"  <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
 
   <div id="container_header_profil">
 
@@ -172,7 +182,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 </div>
 
 
-<div id="container_post_profil">
+<div id="container_post_profil" <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
 
     <p> 
 

@@ -87,6 +87,16 @@ if(isset($_GET['dc'])){
     }
 
     ?>
+
+    <a href="profil.php">
+
+    <div class="left_button">
+
+    Profil
+
+    </div>
+
+    </a>
     
 
     <div>

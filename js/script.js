@@ -26,6 +26,9 @@ const input_post = document.getElementById("input_post")
 const suppr_oui_get_id = document.getElementById("suppr_oui_get_id")
 const connect_toi = document.getElementById("connect_toi")
 const info_user = document.getElementById("info_user")
+const hashtag_mobile = document.getElementById("hashtag_mobile")
+const leave_hashtag = document.getElementById("leave_hashtag")
+
 
 let active_tag = []
 let active_post = []
@@ -91,11 +94,25 @@ tag_selector.addEventListener('change',() =>{
 const showLeft = () => {
   left.style.transform = "translateX(0%)"
   leave_mobile_menu.style.visibility= "visible"
+  hashtag_mobile.style.visibility= "hidden"
 }
 
 const hide_left = () =>{
   left.style.transform = "translateX(-100%)"
   leave_mobile_menu.style.visibility= "hidden"
+  hashtag_mobile.style.visibility= "visible"
+}
+
+const show_right = () =>{
+  right.style.transform = "translateX(20%)"
+  leave_hashtag.style.visibility= "visible"
+  mobile_menu.style.visibility= "hidden"
+}
+
+const hide_right = () =>{
+  right.style.transform = "translateX(110%)"
+  leave_hashtag.style.visibility= "hidden"
+  mobile_menu.style.visibility= "visible"
 }
 
 const clear_localstorage = () => { 
@@ -145,6 +162,8 @@ clear.addEventListener('click', clearTags)
 mobile_menu.addEventListener('click',showLeft)
 leave_mobile_menu.addEventListener('click', hide_left)
 input_post.addEventListener('click', clear_localstorage)
+hashtag_mobile.addEventListener('click', show_right)
+leave_hashtag.addEventListener('click', hide_right)
 
 for (let i = 0; i < li_poubelle.length ; i++){
   console.log(i)

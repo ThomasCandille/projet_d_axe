@@ -322,18 +322,18 @@ session_start();
     
 
       <img id="post_button" src="img/make_a_post.png" alt="fait un post">
-
-    
-
-    
+  
 
       <img id="mobile_menu" src="img/Hamburger_icon.svg.png" alt="sandwich menu">
 
-    
-
-    
 
       <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
+
+
+      <img id="hashtag_mobile"  src="img/hashtag.svg" alt="hashtag">
+
+
+      <img id="leave_hashtag" src="img/cross.png" alt="leave hashtag">
 
     
 

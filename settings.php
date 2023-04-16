@@ -80,6 +80,16 @@ session_start();
     }
 
     ?>
+
+    <a href="profil.php">
+
+    <div class="left_button">
+
+    Profil
+
+    </div>
+
+    </a>
     
 
     <div>
