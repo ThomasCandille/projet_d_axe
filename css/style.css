@@ -1,3 +1,5 @@
+
+
 *,*::before,*::after{
   box-sizing: border-box;
   font: small-caps bold 24px/1 sans-serif;
@@ -96,6 +98,25 @@ body{
   animation: slide_top 1s;
 }
 
+#home_page_button:hover{
+  animation: clic 2s infinite;
+}
+
+#mid_action_post_maker:hover{
+  animation: clic 2s infinite;
+}
+
+@keyframes clic {
+  25%{
+    background-color: #272727;
+  }
+  50%{
+    background-color: #131313;
+  }
+  75%{
+    background-color: #272727;
+  }
+}
 
 a:link, a:visited {
   text-decoration: none;
@@ -116,6 +137,22 @@ a:link, a:visited {
   justify-content: center;
   align-items: center;
   animation: slide_left 1s;
+}
+
+.left_button:hover{
+  animation: left_hover 2s infinite;
+}
+
+@keyframes left_hover {
+  25%{
+    background-color: #686868;
+  }
+  50%{
+    background-color: #D9D9D9;
+  }
+  75%{
+    background-color: #686868;
+  }
 }
 
 a{
@@ -251,6 +288,22 @@ a{
 @keyframes slide_right {
   0%{margin-left: 100%;}
   100%{margin-left: 0%;}
+}
+
+.tag:hover{
+  animation: select 2s infinite;
+}
+
+@keyframes select {
+  25%{
+    background-color: green;
+  }
+  50%{
+    background-color: #131313;
+  }
+  75%{
+    background-color: green;
+  }
 }
 
 .HTML{
@@ -488,6 +541,7 @@ a{
   justify-content: space-around;
   border-radius: 50px;
 }
+
 
 #mobile_menu{
   visibility: hidden;
