@@ -506,12 +506,6 @@ a{
   height: 20vh;
   text-align: center;
   color: white;
-  animation: scaling 1s;
-}
-
-@keyframes scaling {
-  0%{transform: scale(0%);}
-  100%{transform: scale(100%);}
 }
 
 #button_container{
