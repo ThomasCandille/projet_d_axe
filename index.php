@@ -234,7 +234,7 @@ session_start();
         
 
 
-        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class, post_file) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag','$file_name')");
+        $pdo->exec("INSERT INTO post(post_pseudo, post_text, post_like, post_pp, post_tag, post_tag_class, post_file, post_user_id) VALUES ('$_SESSION[pseudo]','$message','$like','$_SESSION[photo]','$tag','$tag','$file_name','$_SESSION[id]')");
       }
 
       ?>
@@ -285,11 +285,24 @@ session_start();
 
           </div>
 
+          ';
+          ?>
+
+          <?php
+
+          if($mess['post_file']){
+          echo'
           <div class="container_img_post">
 
           <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
 
-          </div>
+          </div>';
+                }
+          
+          ?>
+
+          <?php
+          echo'
 
           <div class="post_end">
 
@@ -300,7 +313,7 @@ session_start();
             </div>
 
             ';
-            if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $mess['post_pseudo']){
+            if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['post_user_id']){
               echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '

@@ -129,7 +129,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
   <div class="search_profil">
 
-  <form id="profil" action="profil.php">
+  <form id="profil" action="pseudo.php">
     <textarea name="profil" id="textarea_profil" cols="30" rows="1" placeholder="Recherche"></textarea>
     <input type="submit" name="redirect">
   </form>
@@ -139,7 +139,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
   
   if(isset($_POST['redirect'])){
     $loc = $_POST['profil'];
-    header('Location=profil.php?profil='.$loc.'');
+    header('Location=pseudo.php?profil='.$loc.'');
   }
 
 
@@ -151,16 +151,18 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 <?php
 
 if(isset($_GET['profil'])){
+  echo $_GET['profil'];
 
 $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\'');
       $user = [];
       while($mess = $r->fetch(PDO::FETCH_ASSOC)){
       array_push($user, $mess);
       }
+      var_dump($user);
 }
 ?>
 
-<div id="container_profil"  <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
+<div id="container_profil"  <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
 
   <div id="container_header_profil">
 
@@ -178,7 +180,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 </div>
 
 
-<div id="container_post_profil" <?php if(isset($_GET['profil']) && ($_GET['profil'] !='')) {} else {echo 'class="hidden"';} ?>>
+<div id="container_post_profil" <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
 
     <p> 
 
@@ -200,7 +202,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
         if(isset($_GET['profil'])){
 
-        $r = $pdo->query('SELECT * FROM post WHERE post_pseudo = \''.$_GET['profil'].'\'');
+        $r = $pdo->query('SELECT * FROM post WHERE post_user_id = \''.$user[0]['user_id'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
@@ -246,7 +248,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
               </div>
   
               ';
-              if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $mess['post_pseudo']){
+              if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['post_user_id']){
                 echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
               }
               echo '

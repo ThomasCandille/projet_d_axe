@@ -24,6 +24,14 @@ session_start();
 
     <?php
 
+    $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+
+    if(isset($_POST['new_username'])){
+          $new_user = $_POST['new_username'];
+          $old_user = $_SESSION['pseudo'];
+          $pdo->exec("UPDATE user SET user_name = '$_POST[new_username]' WHERE user_name = '$_SESSION[pseudo]';");
+          $_SESSION['pseudo'] = $new_user;
+    }
     if(isset($_SESSION['pseudo'])){
       echo'
       <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
@@ -36,6 +44,7 @@ session_start();
       <p id="user_username">no user</p>
       '; 
     }
+    
 
     ?>
     
@@ -153,6 +162,10 @@ session_start();
 
           if(isset($_SESSION['pseudo'])){
             echo $_SESSION['pseudo'];
+            echo'
+            <div class="modify_username_button" id="name_modifier">
+            <p>Modifier</p>
+            </div>';
           }
           else{
             echo'connectez vous !';
@@ -223,12 +236,9 @@ session_start();
     </p>
 
         <?php
+        if(isset($_SESSION['id'])){
 
-        $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-
-        if(isset($_SESSION['pseudo'])){
-
-        $r = $pdo->query('SELECT * FROM post WHERE post_pseudo = \''.$_SESSION['pseudo'].'\'');
+        $r = $pdo->query('SELECT * FROM post WHERE post_user_id = \''.$_SESSION['id'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
@@ -274,7 +284,7 @@ session_start();
               </div>
   
               ';
-              if(isset($_SESSION['pseudo']) && $_SESSION['pseudo'] == $mess['post_pseudo']){
+              if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['post_user_id']){
                 echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
               }
               echo '
@@ -308,6 +318,15 @@ session_start();
   </div>
 
   <div id="right">
+
+  </div>
+
+  <div class="container_modification" id="modify_name" style="visibility: hidden;">
+
+        <form method="post">
+          <textarea placeholder="new_username" name="new_username" id="new_username" cols="30" rows="1"></textarea>
+          <input type="submit">
+        </form>
 
   </div>
 

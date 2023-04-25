@@ -17,6 +17,7 @@
 session_start();
 
 if(isset($_GET['dc'])){
+  unset($_SESSION['id']);
   unset($_SESSION['pseudo']);
   unset($_SESSION['mdp']);
   unset($_SESSION['mail']);
@@ -156,11 +157,7 @@ if(isset($_GET['dc'])){
 
     else{
     $pdo->exec("INSERT INTO user(user_name, user_password, user_mail, user_pp) VALUES ('$username','$hash','$mail','$pp')");
-    $_SESSION['pseudo'] = $username;
-    $_SESSION['mdp'] = $hash;
-    $_SESSION['mail'] = $mail;
-    $_SESSION['photo'] = $pp;
-    header("Location:index.php");
+    header("Location:account.php");
     }
   }
 
@@ -184,6 +181,7 @@ if(isset($_GET['dc'])){
           $actual_user = $pdo->query('SELECT * FROM user WHERE user_mail = "'.$mail.'"');
           $user_actual = $actual_user->fetch(PDO::FETCH_ASSOC);
 
+          $_SESSION['id'] = $user_actual['user_id'];
           $_SESSION['pseudo'] = $user_actual['user_name'];
           $_SESSION['mdp'] = $user_actual['user_password'];
           $_SESSION['mail'] = $user_actual['user_mail'];
