@@ -250,7 +250,7 @@ session_start();
       //SUPPRIMER UN POST
 
       //RECUPERE LES POST DANS LA TABLE
-      $r = $pdo->query('SELECT * FROM post');
+      $r = $pdo->query('SELECT * FROM post INNER JOIN user on post.post_user_id=user.user_id');
       $array_post = [];
       while($mess = $r->fetch(PDO::FETCH_ASSOC)){
       array_push($array_post, $mess);
@@ -269,8 +269,8 @@ session_start();
 
           <div class="post_user_info">
 
-            <img class="profile_picture" src="'.$mess['post_pp'].'" alt="photo de profil">
-            <p class="username"> '.$mess['post_pseudo'].' </p>
+            <img class="profile_picture" src="'.$mess['user_pp'].'" alt="photo de profil">
+            <p class="username"> '.$mess['user_name'].' </p>
             <p class="date_post">'.$mess['post_time'].'</p>
 
           </div>
