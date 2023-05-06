@@ -349,7 +349,6 @@ a{
 
 
 .poubelle{
-  height: 4.5vh;
   width: 3vw;
 }
 
@@ -635,16 +634,25 @@ a{
   justify-content: center;
 }
 
+.modify_mail_button{
+  width: 10vw;
+  height: 5vh;
+  background-color: rgb(190, 190, 190);
+  border-radius: 30px 30px 0 30px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
-
-
-
-
-
-
-
+.modify_password_button{
+  width: 10vw;
+  height: 5vh;
+  background-color: rgb(190, 190, 190);
+  border-radius: 30px 30px 0 30px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
 @media screen and (max-width: 768px){

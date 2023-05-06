@@ -32,6 +32,21 @@ session_start();
           $pdo->exec("UPDATE user SET user_name = '$_POST[new_username]' WHERE user_name = '$_SESSION[pseudo]';");
           $_SESSION['pseudo'] = $new_user;
     }
+
+    if(isset($_POST['new_mail'])){
+      $new_mail = $_POST['new_mail'];
+      $old_mail = $_SESSION['mail'];
+      $pdo->exec("UPDATE user SET user_mail = '$_POST[new_mail]' WHERE user_mail = '$_SESSION[mail]';");
+      $_SESSION['mail'] = $new_mail;
+    }
+
+    if(isset($_POST['new_password'])){
+      $new_password = $_POST['new_password'];
+      $old_password = $_SESSION['mdp'];
+      $pdo->exec("UPDATE user SET user_password = '$_POST[new_password]' WHERE user_password = '$_SESSION[password]';");
+      $_SESSION['mdp'] = $new_password;
+    }
+
     if(isset($_SESSION['pseudo'])){
       echo'
       <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
@@ -185,6 +200,10 @@ session_start();
 
           if(isset($_SESSION['mail'])){
             echo $_SESSION['mail'];
+            echo'
+            <div class="modify_mail_button" id="mail_modifier">
+            <p>Modifier</p>
+            </div>';
           }
           else{
             echo'connectez vous !';
@@ -204,6 +223,10 @@ session_start();
 
           if(isset($_SESSION['mdp'])){
             echo '**********';
+            echo'
+            <div class="modify_password_button" id="password_modifier">
+            <p>Modifier</p>
+            </div>';
           }
           else{
             echo'connectez vous !';
@@ -324,7 +347,25 @@ session_start();
   <div class="container_modification" id="modify_name" style="visibility: hidden;">
 
         <form method="post">
-          <textarea placeholder="new_username" name="new_username" id="new_username" cols="30" rows="1"></textarea>
+          <input type="text" placeholder="new_username" name="new_username" id="new_username" cols="30" rows="1"></input>
+          <input type="submit">
+        </form>
+
+  </div>
+
+  <div class="container_modification" id="modify_mail" style="visibility: hidden;">
+
+        <form method="post">
+          <input type="email" placeholder="new_mail" name="new_mail" id="new_mail" cols="30" rows="1"></input>
+          <input type="submit">
+        </form>
+
+  </div>
+
+  <div class="container_modification" id="modify_password" style="visibility: hidden;">
+
+        <form method="post">
+          <input type="password" placeholder="new_password" name="new_password" id="new_password" cols="30" rows="1"></input>
           <input type="submit">
         </form>
 
