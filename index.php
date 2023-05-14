@@ -200,8 +200,6 @@ session_start();
       <?php 
 
       $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-      
-      
 
       if(isset($_POST['post_made']) && isset($_SESSION['pseudo'])){
         $message = addslashes($_POST['post']);
@@ -327,6 +325,7 @@ session_start();
       ';
       }
       //PUBLIER UN POST
+
 
       ?>
 
