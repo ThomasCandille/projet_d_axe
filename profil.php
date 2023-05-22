@@ -261,7 +261,7 @@ session_start();
         <?php
         if(isset($_SESSION['id'])){
 
-        $r = $pdo->query('SELECT * FROM post WHERE post_user_id = \''.$_SESSION['id'].'\'');
+        $r = $pdo->query('SELECT * FROM post INNER JOIN user on post.post_user_id=user.user_id WHERE post_user_id = \''.$_SESSION['id'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
@@ -269,56 +269,69 @@ session_start();
 
         foreach($array_post as $mess){
           echo
-          '
-          <div class="post">
-  
-            <div class="post_info">
-  
-            <div class="post_user_info">
-  
-              <img class="profile_picture" src="'.$mess['post_pp'].'" alt="photo de profil">
-              <p class="username"> '.$mess['post_pseudo'].' </p>
-              <p class="date_post">'.$mess['post_time'].'</p>
-  
-            </div>
-  
-            <div class="post_bar">
-  
-            </div>
-  
-            <div class="post_content">
-  
-              <p> '.$mess['post_text'].' </p>
-  
-            </div>
-  
-            <div class="container_img_post">
-  
-            <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
-  
-            </div>
-  
-            <div class="post_end">
-  
-              <div class="tag_post '.$mess['post_tag'].'">
-  
-                '.$mess['post_tag'].'
-  
-              </div>
-  
-              ';
-              if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['post_user_id']){
-                echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
-              }
-              echo '
-              </div>
-  
+        '
+        <div class="post">
+
+          <div class="post_info">
+
+          <div class="post_user_info">
+
+            <img class="profile_picture" src="'.$mess['user_pp'].'" alt="photo de profil">
+            <p class="username"> '.$mess['user_name'].' </p>
+            <p class="date_post">'.$mess['post_time'].'</p>
+
           </div>
+
+          <div class="post_bar">
+
+          </div>
+
+          <div class="post_content">
+
+            <p> '.$mess['post_text'].' </p>
+
+          </div>
+
+          ';
+          ?>
+
+          <?php
+
+          if($mess['post_file']){
+          echo'
+          <div class="container_img_post">
+
+          <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+
+          </div>';
+                }
           
-            <div class="horizontal_bar"></div>
-  
+          ?>
+
+          <?php
+          echo'
+
+          <div class="post_end">
+
+            <div class="tag_post '.$mess['post_tag'].'">
+
+              '.$mess['post_tag'].'
+
+            </div>
+
+            ';
+            if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
+              echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+            }
+            echo '
+            </div>
+
         </div>
-        ';
+        
+          <div class="horizontal_bar"></div>
+
+      </div>
+      ';
         }
         }
 
