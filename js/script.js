@@ -80,7 +80,7 @@ const clearTags = () =>{
   }
   active_tag = []
   active_post = []
-  document.documentElement.style.setProperty('--pink_color', color_tag);
+  document.documentElement.style.setProperty('--pink_color', '#E09ECE');
 
   
   for(let i=0; i<li_post.length;i++){
