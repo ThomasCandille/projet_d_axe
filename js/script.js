@@ -53,6 +53,10 @@ const checkTag =(event) =>{
   if (el.style.backgroundColor === ""){   
     el.style.backgroundColor = "#00aa00"
     active_tag.push(el.classList[0])
+    console.log(el.classList)
+    const style = getComputedStyle(el)
+    let color_tag = style.color
+    document.documentElement.style.setProperty('--pink_color', color_tag);
   }
 
   if (active_tag != []){
@@ -76,6 +80,7 @@ const clearTags = () =>{
   }
   active_tag = []
   active_post = []
+  document.documentElement.style.setProperty('--pink_color', color_tag);
 
   
   for(let i=0; i<li_post.length;i++){
