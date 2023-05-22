@@ -219,17 +219,17 @@ if(isset($_GET['dc'])){
 
     </div>
 
-    <div id="form_connect" class="form_style hidden">
+    <div id="form_connect" class="container row justify-content-center hidden bootstrap_text">
 
-    <div id="container_form_connect" class="container hidden">
+    <div id="container_form_connect" class="col-10 hidden bootstrap_position mt-5">
 
       <p> Log In</p>
 
       <form class="form-horizontal" method="post">
 
-        <div class="form-group space_form">
+        <div class="form-group">
 
-          <label class="control-label col-sm-2 space_form" for="mail1"> Mail</label>
+          <label class="control-label col-sm-2" for="mail1"> Mail</label>
           <div class="col-sm-8 offset-sm-2">
 
             <input type="email" name="mail_connect" class="form-control" id="mail1" placeholder="adresse mail" required>
@@ -238,9 +238,9 @@ if(isset($_GET['dc'])){
 
         </div>
 
-        <div class="form-group space_form">
+        <div class="form-group">
 
-          <label class="control-label col-sm-2 space_form" for="password1"> mot de passe</label>
+          <label class="control-label col-sm-2 " for="password1"> mot de passe</label>
           <div class="col-sm-8 offset-sm-2">
 
             <input type="password" name="mdp_connect" class="form-control" id="password1" placeholder="mot de passe" required>
@@ -252,7 +252,7 @@ if(isset($_GET['dc'])){
 
         <div class="form-group">
 
-          <div class="offset-sm-2 col-sm-8">
+          <div class="offset-sm-2 col-sm-8 center_bootstrap_element">
             <button type="submit" name="submit_connect" class="btn btn-primary">Envoyer</button>
 
           </div>
@@ -265,15 +265,15 @@ if(isset($_GET['dc'])){
 
     </div>
 
-    <div id="form_subscribe" class="form_style hidden" style="margin: 0;">
+    <div id="form_subscribe" class="container row justify-content-center hidden bootstrap_text" style="margin: 0;">
 
-      <div id="container_form_subscribe" class="container hidden">
+      <div id="container_form_subscribe" class="col-10 hidden bootstrap_position mt-5">
         <p> Subscribe</p>
         <form class="form-horizontal" method="post">
   
-          <div class="form-group space_form">
+          <div class="form-group">
   
-            <label class="control-label col-sm-6 space_form" for="pseudo2" style="margin: 0;"> Pseudo</label>
+            <label class="control-label col-sm-6" for="pseudo2" style="margin: 0;"> Pseudo</label>
             <div class="col-sm-8 offset-sm-2">
   
               <input type="text" name="pseudo_subscribe" class="form-control" id="pseudo2" placeholder="Pseudo" required>
@@ -282,9 +282,9 @@ if(isset($_GET['dc'])){
   
           </div>
   
-          <div class="form-group space_form">
+          <div class="form-group">
   
-            <label class="control-label col-sm-6 space_form" for="mail2" style="margin: 0;"> mail </label>
+            <label class="control-label col-sm-6" for="mail2" style="margin: 0;"> mail </label>
             <div class="col-sm-8 offset-sm-2">
   
               <input type="email" name="mail_subscribe" class="form-control" id="mail2" placeholder="mail" required>
@@ -294,9 +294,9 @@ if(isset($_GET['dc'])){
 
             </div>
 
-            <div class="form-group space_form">
+            <div class="form-group">
   
-            <label class="control-label col-sm-6 space_form" for="password2" style="margin: 0;"> mot de passe</label>
+            <label class="control-label col-sm-6" for="password2" style="margin: 0;"> mot de passe</label>
             <div class="col-sm-8 offset-sm-2">
   
               <input type="password" name="mdp_subscribe" class="form-control" id="password2" placeholder="mot de passe" required>
@@ -306,9 +306,9 @@ if(isset($_GET['dc'])){
   
           </div>
 
-          <div class="form-group space_form">
+          <div class="form-group">
   
-            <label class="control-label col-sm-6 space_form" for="pp2" style="margin: 0;"> lien lorem picsum</label>
+            <label class="control-label col-sm-6" for="pp2" style="margin: 0;"> lien lorem picsum</label>
             <div class="col-sm-8 offset-sm-2">
   
               <input type="text" name="pp_subscribe" class="form-control" id="pp2" placeholder="lien lorem picsum" required>
@@ -320,7 +320,7 @@ if(isset($_GET['dc'])){
   
           <div class="form-group">
   
-            <div class="offset-sm-2 col-sm-8">
+            <div class="offset-sm-2 col-sm-8 center_bootstrap_element">
               <button type="submit" name="submit_subscribe" class="btn btn-primary">Envoyer</button>
   
             </div>

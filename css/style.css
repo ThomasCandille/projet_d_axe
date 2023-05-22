@@ -180,22 +180,6 @@ a{
   justify-content: space-around;
 }
 
-.form_style{
-  padding-top: 2vh;
-  color: white;
-  text-align: center;
-  background-color: #272727;
-  height: 85vh;
-  width: 50vw;
-  margin-top: 10vh;
-  border-radius: 75px;
-  transition: 1s;
-}
-
-.space_form{
-  margin-bottom: 4vh;
-}
-
 #post_container{
   display: flex;
   flex-direction: column;
@@ -654,6 +638,20 @@ a{
   justify-content: center;
 }
 
+.center_bootstrap_element{
+  display: flex;
+  justify-content: center;
+}
+
+.bootstrap_text{
+  color: white;
+  text-align: center;
+}
+
+.bootstrap_position{
+  background-color: #353535;
+  border-radius: 75px;
+}
 
 @media screen and (max-width: 768px){
 
