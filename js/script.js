@@ -9,11 +9,8 @@ const left_make_a_post = document.getElementById("left_make_a_post")
 const post_maker = document.getElementById("post_maker")
 const txt_post = document.getElementById("post_txt")
 const tag_selector = document.getElementById("tag_selector")
-const submit = document.getElementById("submit")
 const clear = document.getElementById("all_tag")
 const post_container = document.getElementById("post_container")
-const icon_pp = document.getElementById("icon_pp")
-const user_username = document.getElementById("user_username")
 const mobile_menu = document.getElementById("mobile_menu")
 const leave_mobile_menu = document.getElementById("leave_mobile_menu")
 const left = document.getElementById("left")
@@ -35,7 +32,6 @@ let active_post = []
 
 
 console.log("all good")
-console.log(user_username)
 messageStockage = localStorage
 
 txt_post.value = localStorage.getItem("text")

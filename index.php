@@ -24,17 +24,20 @@ session_start();
 
     <?php
 
+    //VERIFIE SI UN UTILISATEUR EST CONNECTE
     if(isset($_SESSION['pseudo'])){
+      //AFFICHE LES INFOS DE L UTILISATEUR
       echo'
       <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
       <p id="user_username">'.$_SESSION['pseudo'].'</p>
       ';
     }
     else{
+      //AFFICHE ICONE VIDE
       echo'
       <img id="icon_pp" src="img/icon user.png" alt="pp">
-      <p id="user_username">no user</p>
-      '; 
+      <p id="user_username">no user</p> 
+      '; //utilisation de user_username pour pop up de connexion
     }
 
     ?>
@@ -63,6 +66,7 @@ session_start();
 
     <?php
 
+    //SI UN UTILISATEUR EST CO _ POSSIBILITE D ACCEDER AU PROFIL
     if(isset($_SESSION['pseudo'])){
 
       echo
@@ -98,6 +102,7 @@ session_start();
 
     <?php
 
+    //SI CO _ BOUTON DE DECONNEXION
     if(isset($_SESSION['pseudo'])){
       echo'
       <a href="account.php?dc=True">
@@ -109,6 +114,8 @@ session_start();
       </a>
       ';
     }
+
+    //BOUTON POUR SE CONNECTER SI PERSONNE N EST CO
     else{
       echo'
       <a href="account.php">
@@ -199,39 +206,51 @@ session_start();
 
       <?php 
 
+      //CONNEXION A LA DB
       $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
+      //SI QQN DE CO FAIT UN POST
       if(isset($_POST['post_made']) && isset($_SESSION['pseudo'])){
         $message = addslashes($_POST['post']);
         $like = 0;
+        //RECUPERATION DU TAG SELECTIONNE
         $tag = $_POST['tag_selector'];
 
+        //SI IL Y A UN MEDIA DANS LE POST
         if(isset($_FILES['input_file'])){
-          $files = $_FILES["input_file"];
-          $file_name = $files['name'];
-          $file_tmp = $files['tmp_name'];
-          $file_size = $files['size'];
+          $files = $_FILES["input_file"]; //files = MEDIA ENVOYE
+          $file_name = $files['name']; //NOM DU MEDIA
+          $file_tmp = $files['tmp_name']; //NOM TEMPORAIRE DU FICHIER
+          $file_size = $files['size']; //POIDS DU MEDIA
           
 
-          $possible_ext = ["jpg","jpeg","png","gif"];
+          $possible_ext = ["jpg","jpeg","png","gif"]; //EXTENTION DU FICHIER DISPO
+
+          //VERIFICATION SI EXTENTION = IMAGE
           $file_name_part = explode('.', $file_name);
-          $file_ext = strtolower(end($file_name_part));
+          $file_ext = strtolower(end($file_name_part)); 
           if(!in_array($file_ext, $possible_ext)){
             $files = null;
           }
+          //VERIFICATION SI EXTENTION = IMAGE
 
+          //VERIFICATION DU POID < 2MO
           if($file_size >= 2000000){
             $files = null;
           }
+          //VERIFICATION DU POID < 2MO
+          //SI VERIFICATION PAS OK -> PAS DE files
 
+          //TELECHARGEMENT DU MEDIA DANS LES FICHIERS
           move_uploaded_file($file_tmp, "img/".$file_name);
         }
+        //SI PAS DE MEDIA -> PAS DE files
         else{
           $files = null;
         }
         
 
-
+        //INSERTION DU NOUVEAU POST DANS LA DB
         $pdo->exec("INSERT INTO post(post_text, post_like, post_tag, post_file, post_user_id) VALUES ('$message','$like','$tag','$file_name','$_SESSION[id]')");
       }
 

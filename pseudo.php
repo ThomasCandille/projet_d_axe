@@ -136,7 +136,8 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
   <?php 
 
-  
+  //SI UN PSEUDO EST RECHERCHE DANS LA BARRE
+  //REDIRECTION VERS LA PAGE DE L UTILISATEUR
   if(isset($_POST['redirect'])){
     $loc = $_POST['profil'];
     header('Location=pseudo.php?profil='.$loc.'');
@@ -150,9 +151,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
 <?php
 
+//SI UN NOM D UTILISATEUR A ETE ENTREE
 if(isset($_GET['profil'])){
   echo $_GET['profil'];
 
+//RECUPERATION DE SES POSTS
 $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\'');
       $user = [];
       while($mess = $r->fetch(PDO::FETCH_ASSOC)){
@@ -161,24 +164,26 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 }
 ?>
 
+<!-- SI UN UTILISATEUR EST CHERCHE -> ON MONTRE SON PROFIL SINON CACHE -->
 <div id="container_profil"  <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
 
   <div id="container_header_profil">
 
-    <img class="profile_picture" src=" <?php echo $user[0]['user_pp']; ?>" alt="user_pp">
+    <img class="profile_picture" src=" <?php echo $user[0]['user_pp']; //RECUPERATION PP SUR PREMIER POST ?>" alt="user_pp">
     <p> User profile :</p>
 
   </div>
 
   <div class="container_info_profil">
 
-    <p> Username : <?php echo $user[0]['user_name']; ?> </p>
+    <p> Username : <?php echo $user[0]['user_name']; //RECUPERATION NOM SUR PREMIER POST ?> </p>
 
   </div>
 
 </div>
 
 
+<!-- SI UN UTILISATEUR EST CHERCHE -> ON MONTRE SES POSTS SINON CACHE -->
 <div id="container_post_profil" <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
 
     <p> 
@@ -199,14 +204,17 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
         <?php
 
+        //SI UTILISATEUR RECHECHE
         if(isset($_GET['profil'])){
 
+        //RECUPERATION DES POSTS DE L UTILISATEUR RECHERCHE
         $r = $pdo->query('SELECT * FROM post INNER JOIN user on post.post_user_id=user.user_id WHERE post_user_id = \''.$user[0]['user_id'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
         }
 
+        //AFFICHAGE DES POSTS
         foreach($array_post as $mess){
           echo
         '
