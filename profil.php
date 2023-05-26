@@ -26,13 +26,16 @@ session_start();
 
     $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
+    //MODIFICATION DU NOM D UTILISATEUR
     if(isset($_POST['new_username'])){
-          $new_user = $_POST['new_username'];
-          $old_user = $_SESSION['pseudo'];
+          $new_user = $_POST['new_username']; //RECUPERATION NOUVEAUX USERNAME
+          $old_user = $_SESSION['pseudo']; //RECUPERATION ANCIEN USERNAME
+          //CHANGEMENT DU NOM DANS LA DB
           $pdo->exec("UPDATE user SET user_name = '$_POST[new_username]' WHERE user_name = '$_SESSION[pseudo]';");
-          $_SESSION['pseudo'] = $new_user;
+          $_SESSION['pseudo'] = $new_user; //UPDATE DE LA SESSION
     }
 
+    //MODIFICATION DU MAIL
     if(isset($_POST['new_mail'])){
       $new_mail = $_POST['new_mail'];
       $old_mail = $_SESSION['mail'];
@@ -40,6 +43,7 @@ session_start();
       $_SESSION['mail'] = $new_mail;
     }
 
+    //MODIFICATION DU MDP
     if(isset($_POST['new_password'])){
       $new_password = $_POST['new_password'];
       $old_password = $_SESSION['mdp'];
@@ -47,6 +51,7 @@ session_start();
       $_SESSION['mdp'] = $new_password;
     }
 
+    //SI CONNECTE AFFICHAGE DES INFOS UTILISATEUR
     if(isset($_SESSION['pseudo'])){
       echo'
       <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
@@ -87,6 +92,7 @@ session_start();
 
     <?php
 
+    //SI CONNECTE -> ACCES AU PROFIL POSSIBLE
     if(isset($_SESSION['pseudo'])){
 
       echo
@@ -122,6 +128,7 @@ session_start();
 
     <?php
 
+    //SI CONNECTER -> DECONNECT SINON CONNECT
     if(isset($_SESSION['pseudo'])){
       echo'
       <a href="account.php?dc=True">
@@ -155,6 +162,7 @@ session_start();
       <div id="container_header_profil">
       <img class="profile_picture" src=
       <?php 
+      //DISPLAY PP UTILISATEUR IS CONNECTE
       if(isset($_SESSION['photo'])){
         echo $_SESSION['photo'];
       }
@@ -175,6 +183,7 @@ session_start();
 
           <?php
 
+          //DISPLAY USERNAME SI CONNECTE + BOUTON MODIFICATION
           if(isset($_SESSION['pseudo'])){
             echo $_SESSION['pseudo'];
             echo'
@@ -198,6 +207,7 @@ session_start();
 
           <?php
 
+          //DISPLAY MAIL SI CONNECT + BOUTON MODIFICATION
           if(isset($_SESSION['mail'])){
             echo $_SESSION['mail'];
             echo'
@@ -221,6 +231,7 @@ session_start();
 
           <?php
 
+          //DISPLAY ETOILE POUR MDP + BOUTON MODIFICATION
           if(isset($_SESSION['mdp'])){
             echo '**********';
             echo'
@@ -259,14 +270,18 @@ session_start();
     </p>
 
         <?php
+
+        //DISPALY DES PUCLICATIONS DE L4UTILISATEUR SI CONNEXION
         if(isset($_SESSION['id'])){
 
+        //RECUPERATION DES POSTS
         $r = $pdo->query('SELECT * FROM post INNER JOIN user on post.post_user_id=user.user_id WHERE post_user_id = \''.$_SESSION['id'].'\'');
         $array_post = [];
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
         }
 
+        //AFFICHAGE DES POSTS
         foreach($array_post as $mess){
           echo
         '
@@ -356,6 +371,8 @@ session_start();
   <div id="right">
 
   </div>
+
+  <!-- BOUTON DE MODIFICATION DU PROFIL -->
 
   <div class="container_modification" id="modify_name" style="visibility: hidden;">
 

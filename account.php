@@ -16,6 +16,8 @@
 
 session_start();
 
+
+//SI DECO -> UNSET LES ELEMENTS DE LA SESSION
 if(isset($_GET['dc'])){
   unset($_SESSION['id']);
   unset($_SESSION['pseudo']);
@@ -32,6 +34,7 @@ if(isset($_GET['dc'])){
 
       <?php
 
+      //SI CONNECT DISPLAY DES INFOS
       if(isset($_SESSION['pseudo'])){
         echo'
         <img id="icon_pp" src="'.$_SESSION['photo'].'" alt="pp">
@@ -119,28 +122,35 @@ if(isset($_GET['dc'])){
 
   $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
+  //SI FORMULAIRE REMPLI
   if($_POST){
 
+    //SI FORMULAIRE INSCRIPTION
     if(isset($_POST['submit_subscribe'])){
 
+    //HASH DU MDP
     $hash = password_hash($_POST['mdp_subscribe'],PASSWORD_DEFAULT);
 
+    //RECUPERATION DES INFOS DU FORMULAIRE
     $username = $_POST['pseudo_subscribe'];
     $mail = $_POST['mail_subscribe'];
     $pp = $_POST['pp_subscribe'];
 
+    //RECCUPERATION TOUS LES USER
     $li_username = $pdo->query('SELECT user_name FROM user');
     $array_username = [];
     while($user = $li_username->fetch(PDO::FETCH_ASSOC)){
       array_push($array_username, $user['user_name']);
     }
 
+    //RECUEPRATION TOUS LES MAILS
     $li_mail = $pdo->query('SELECT user_mail FROM user');
     $array_mail = [];
     while($user = $li_mail->fetch(PDO::FETCH_ASSOC)){
       array_push($array_mail, $user['user_mail']);
     }
 
+    //SI USERNAME DEJA DANS LA DB -> PAS D INSCRIPTION
     if(in_array($_POST['pseudo_subscribe'], $array_username)){
       //TROUVER UN TRUC A FAIRE ICI
       //
@@ -148,6 +158,7 @@ if(isset($_GET['dc'])){
       //
     }
 
+    //SI MAIL DEJA DANS LA DB -> PAS D INSCRIPTION
     else if(in_array($_POST['mail_subscribe'], $array_mail)){
       //TROUVER UN TRUC A FAIRE ICI
       //
@@ -155,37 +166,43 @@ if(isset($_GET['dc'])){
       //
     }
 
+    //INSERTION DES INFOS DANS LA DB
     else{
     $pdo->exec("INSERT INTO user(user_name, user_password, user_mail, user_pp) VALUES ('$username','$hash','$mail','$pp')");
     header("Location:account.php");
     }
   }
 
+    //SI FORMULAIRE DE CONNEXION
     if(isset($_POST['submit_connect'])){
+
+      //RECUPERATION DES INFO
       $mail = $_POST['mail_connect'];
       $mdp = $_POST['mdp_connect'];
 
+      //RECUPERATION DES MAIL + MDP DE LA DB
       $li_mail_mdp = $pdo->query('SELECT user_mail, user_password FROM user');
-      $array_mail_mdp = [];
+      $array_mail_mdp = []; //ENSEMBLE DES MAIL/MDP DE LA DB
       while($info = $li_mail_mdp->fetch(PDO::FETCH_ASSOC)){
         array_push($array_mail_mdp, $info);
       }
 
-      $worked = false;
-
       foreach($array_mail_mdp as $indice => $duo){
+        //DUO = MAIL/MDP -> SI MAIL DANS LA DB & MDP ASSOCIER BON
         if($duo['user_mail'] == $mail && password_verify($mdp, $duo['user_password'])){
 
-          $worked = true;
-
+          //RECUPERATION DES INFOS GRACE AU MAIL DE CONNEXION
           $actual_user = $pdo->query('SELECT * FROM user WHERE user_mail = "'.$mail.'"');
           $user_actual = $actual_user->fetch(PDO::FETCH_ASSOC);
 
+          //INFORMATION DONNEES A LA SESSION
           $_SESSION['id'] = $user_actual['user_id'];
           $_SESSION['pseudo'] = $user_actual['user_name'];
           $_SESSION['mdp'] = $user_actual['user_password'];
           $_SESSION['mail'] = $user_actual['user_mail'];
           $_SESSION['photo'] = $user_actual['user_pp'];
+          
+          //RETROUR A LA PAGE DE BASE
           header("Location:index.php");
 
           //CONNEXION A AMELIORER ( - SI PAS LES BONS IDENTIFIANTS / - VERIFIER POUR SESSION DANS INDEX)

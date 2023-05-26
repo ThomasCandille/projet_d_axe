@@ -134,7 +134,13 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
     <input type="submit" name="redirect">
   </form>
 
-  <?php 
+  <?php
+  
+  $r = $pdo->query('SELECT user_name FROM user');
+        $usernames = [];
+        while($mess = $r->fetch(PDO::FETCH_ASSOC)){
+        array_push($usernames, $mess['user_name']);
+        }
 
   //SI UN PSEUDO EST RECHERCHE DANS LA BARRE
   //REDIRECTION VERS LA PAGE DE L UTILISATEUR
@@ -153,7 +159,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
 //SI UN NOM D UTILISATEUR A ETE ENTREE
 if(isset($_GET['profil'])){
-  echo $_GET['profil'];
 
 //RECUPERATION DE SES POSTS
 $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\'');
@@ -165,7 +170,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 ?>
 
 <!-- SI UN UTILISATEUR EST CHERCHE -> ON MONTRE SON PROFIL SINON CACHE -->
-<div id="container_profil"  <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
+<div id="container_profil"  <?php if(isset($_GET['profil'])  && in_array($_GET['profil'],$usernames)) {} else {echo 'class="hidden"';} ?>>
 
   <div id="container_header_profil">
 
@@ -184,7 +189,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
 
 <!-- SI UN UTILISATEUR EST CHERCHE -> ON MONTRE SES POSTS SINON CACHE -->
-<div id="container_post_profil" <?php if(isset($_GET['profil']) && ($user[0]['user_id'] !='')) {} else {echo 'class="hidden"';} ?>>
+<div id="container_post_profil" <?php if(isset($_GET['profil'])  && in_array($_GET['profil'],$usernames)) {} else {echo 'class="hidden"';} ?>>
 
     <p> 
 
@@ -213,6 +218,8 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
         while($mess = $r->fetch(PDO::FETCH_ASSOC)){
         array_push($array_post, $mess);
         }
+
+        $array_post = array_reverse($array_post);
 
         //AFFICHAGE DES POSTS
         foreach($array_post as $mess){
