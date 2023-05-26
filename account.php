@@ -28,7 +28,7 @@ if(isset($_GET['dc'])){
 
 ?>
 
-  <div id="left">
+  <aside id="left">
 
     <div id="info_user">
 
@@ -115,7 +115,7 @@ if(isset($_GET['dc'])){
     </div>
     </a>
     
-  </div>
+  </aside>
 
 
   <?php 
@@ -201,7 +201,7 @@ if(isset($_GET['dc'])){
           $_SESSION['mdp'] = $user_actual['user_password'];
           $_SESSION['mail'] = $user_actual['user_mail'];
           $_SESSION['photo'] = $user_actual['user_pp'];
-          
+
           //RETROUR A LA PAGE DE BASE
           header("Location:index.php");
 
@@ -364,9 +364,9 @@ if(isset($_GET['dc'])){
 
     
 
-  <div id="right">
+  <aside id="right">
 
-  </div>
+  </aside>
 
   <script src="js/account.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

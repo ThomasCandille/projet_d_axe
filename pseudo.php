@@ -19,7 +19,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
 ?>
 
-  <div id="left">
+  <aside id="left">
 
     <div id="info_user">
 
@@ -123,7 +123,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::A
 
     ?>
     
-    </div>
+  </aside>
 
   <div id="mid">
 
@@ -229,23 +229,23 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
           <div class="post_info">
 
-          <div class="post_user_info">
+          <header class="post_user_info">
 
             <img class="profile_picture" src="'.$mess['user_pp'].'" alt="photo de profil">
             <p class="username"> '.$mess['user_name'].' </p>
             <p class="date_post">'.$mess['post_time'].'</p>
 
-          </div>
+          </header>
 
           <div class="post_bar">
 
           </div>
 
-          <div class="post_content">
+          <article class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </div>
+          </article>
 
           ';
           ?>
@@ -254,11 +254,11 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
           if($mess['post_file']){
           echo'
-          <div class="container_img_post">
+          <section class="container_img_post">
 
           <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
 
-          </div>';
+          </section>';
                 }
           
           ?>
@@ -266,7 +266,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
           <?php
           echo'
 
-          <div class="post_end">
+          <footer class="post_end">
 
             <div class="tag_post '.$mess['post_tag'].'">
 
@@ -279,7 +279,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
               echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
-            </div>
+            </footer>
 
         </div>
         
@@ -301,9 +301,9 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
   <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
 
-  <div id="right">
+  <aside id="right">
 
-  </div>
+  </aside>
 
   <script src="js/profil.js"></script>
 </body>

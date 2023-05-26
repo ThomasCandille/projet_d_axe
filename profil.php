@@ -18,7 +18,7 @@ session_start();
 
 ?>
 
-  <div id="left">
+  <aside id="left">
 
     <div id="info_user">
 
@@ -153,13 +153,13 @@ session_start();
 
     ?>
     
-    </div>
+    </aside>
 
   <div id="mid">
 
-    <div id="container_profil">
+    <section id="container_profil">
 
-      <div id="container_header_profil">
+      <sect id="container_header_profil">
       <img class="profile_picture" src=
       <?php 
       //DISPLAY PP UTILISATEUR IS CONNECTE
@@ -174,7 +174,7 @@ session_start();
       <p>
         User profile :
       </p>
-    </div>
+    </sect>
 
       <div class="container_info_profil">
         <p>
@@ -249,7 +249,7 @@ session_start();
       </div>
       
 
-    </div>
+    </section>
 
     <div id="container_post_profil">
 
@@ -289,23 +289,23 @@ session_start();
 
           <div class="post_info">
 
-          <div class="post_user_info">
+          <header class="post_user_info">
 
             <img class="profile_picture" src="'.$mess['user_pp'].'" alt="photo de profil">
             <p class="username"> '.$mess['user_name'].' </p>
             <p class="date_post">'.$mess['post_time'].'</p>
 
-          </div>
+          </header>
 
           <div class="post_bar">
 
           </div>
 
-          <div class="post_content">
+          <article class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </div>
+          </article>
 
           ';
           ?>
@@ -314,11 +314,11 @@ session_start();
 
           if($mess['post_file']){
           echo'
-          <div class="container_img_post">
+          <section class="container_img_post">
 
           <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
 
-          </div>';
+          </section>';
                 }
           
           ?>
@@ -326,7 +326,7 @@ session_start();
           <?php
           echo'
 
-          <div class="post_end">
+          <footer class="post_end">
 
             <div class="tag_post '.$mess['post_tag'].'">
 
@@ -339,7 +339,7 @@ session_start();
               echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
-            </div>
+            </footer>
 
         </div>
         

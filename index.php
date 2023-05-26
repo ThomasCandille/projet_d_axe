@@ -18,7 +18,7 @@ session_start();
 
 ?>
 
-  <div id="left">
+  <aside id="left">
 
     <div id="info_user">
 
@@ -129,7 +129,7 @@ session_start();
 
     ?>
     
-    </div>
+  </aside>
 
   
 
@@ -284,23 +284,23 @@ session_start();
 
           <div class="post_info">
 
-          <div class="post_user_info">
+          <header class="post_user_info">
 
             <img class="profile_picture" src="'.$mess['user_pp'].'" alt="photo de profil">
             <p class="username"> '.$mess['user_name'].' </p>
             <p class="date_post">'.$mess['post_time'].'</p>
 
-          </div>
+          </header>
 
           <div class="post_bar">
 
           </div>
 
-          <div class="post_content">
+          <article class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </div>
+          </article>
 
           ';
           ?>
@@ -309,11 +309,11 @@ session_start();
 
           if($mess['post_file']){
           echo'
-          <div class="container_img_post">
+          <section class="container_img_post">
 
           <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
 
-          </div>';
+          </section>';
                 }
           
           ?>
@@ -321,7 +321,7 @@ session_start();
           <?php
           echo'
 
-          <div class="post_end">
+          <footer class="post_end">
 
             <div class="tag_post '.$mess['post_tag'].'">
 
@@ -334,7 +334,7 @@ session_start();
               echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
-            </div>
+            </footer>
 
         </div>
         
@@ -395,7 +395,7 @@ session_start();
 
   </div>
 
-  <div id="right">
+  <aside id="right">
 
     <div class="tag_name">
       Tag
@@ -467,9 +467,9 @@ session_start();
       Clear All
     </div>
 
-  </div>
+    </aside>
 
-  <div id="connect_toi" class="hidden">
+<div id="connect_toi" class="hidden">
 
 <p id="connect_toi_content" style="visibility: hidden;">  
 
