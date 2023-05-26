@@ -19,10 +19,12 @@
 
 #home_page_button:hover{
   animation: clic 2s infinite;
+  cursor: pointer;
 }
 
 #mid_action_post_maker:hover{
   animation: clic 2s infinite;
+  cursor: pointer;
 }
 
 @keyframes clic {
@@ -45,6 +47,7 @@
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid var(--pink_color);
+  cursor: pointer;
 }
 
 @keyframes slide_top {

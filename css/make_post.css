@@ -18,9 +18,10 @@
 #submit{
   padding: 15px;
   border-style: none;
-  border-radius: 15px;
+  border-radius: 35px;
   background-color: var(--backgroud_color);
   color: white;
+  cursor: pointer;
 }
 
 #annuler{
@@ -29,6 +30,7 @@
   border-radius: 15px;
   color: white;
   background-color: var(--backgroud_color);
+  cursor: pointer;
 }
 
 #tag_selector{

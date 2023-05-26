@@ -4,6 +4,7 @@
   height: 20vh;
   text-align: center;
   color: white;
+
 }
 
 #button_container{
@@ -20,4 +21,5 @@
   align-items: center;
   justify-content: center;
   border-radius: 2vw;
+  cursor: pointer;
 } 

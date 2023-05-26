@@ -6,6 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.modify_username_button:hover{
+  animation: button_hover 2s infinite;
 }
 
 .modify_mail_button{
@@ -16,6 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.modify_mail_button:hover{
+  animation: button_hover 2s infinite;
 }
 
 .modify_password_button{
@@ -26,6 +36,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.modify_password_button:hover{
+  animation: button_hover 2s infinite;
 }
 
 .container_modification{

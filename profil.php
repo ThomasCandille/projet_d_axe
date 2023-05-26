@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 
 </head>
@@ -157,9 +157,9 @@ session_start();
 
   <div id="mid">
 
-    <section id="container_profil">
+    <div id="container_profil">
 
-      <sect id="container_header_profil">
+      <div id="container_header_profil">
       <img class="profile_picture" src=
       <?php 
       //DISPLAY PP UTILISATEUR IS CONNECTE
@@ -174,13 +174,13 @@ session_start();
       <p>
         User profile :
       </p>
-    </sect>
+    </div>
 
       <div class="container_info_profil">
         <p>
 
           Username :
-
+        </p>
           <?php
 
           //DISPLAY USERNAME SI CONNECTE + BOUTON MODIFICATION
@@ -197,14 +197,14 @@ session_start();
 
           ?>
 
-        </p>
+        
       </div>
 
       <div class="container_info_profil">
         <p>
 
           Email : 
-
+        </p>
           <?php
 
           //DISPLAY MAIL SI CONNECT + BOUTON MODIFICATION
@@ -221,14 +221,14 @@ session_start();
 
           ?>
 
-        </p>
+        
       </div>
 
       <div class="container_info_profil">
         <p>
 
           mdp : 
-
+        </p>
           <?php
 
           //DISPLAY ETOILE POUR MDP + BOUTON MODIFICATION
@@ -245,11 +245,11 @@ session_start();
 
           ?>
 
-        </p>
+        
       </div>
       
 
-    </section>
+    </div>
 
     <div id="container_post_profil">
 
@@ -303,11 +303,11 @@ session_start();
 
           </div>
 
-          <article class="post_content">
+          <div class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </article>
+          </div>
 
           ';
           ?>
@@ -316,11 +316,11 @@ session_start();
 
           if($mess['post_file']){
           echo'
-          <section class="container_img_post">
+          <div class="container_img_post">
 
           <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
-          </section>';
+          </div>';
                 }
           
           ?>
@@ -338,7 +338,7 @@ session_start();
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" onmouseover="this.src=\'img/open_bin.svg\';" onmouseout="this.src=\'img/closed_bin.svg\'"; alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>
@@ -379,7 +379,7 @@ session_start();
   <div class="container_modification" id="modify_name" style="visibility: hidden;">
 
         <form method="post">
-          <input type="text" placeholder="new_username" name="new_username" id="new_username" cols="30" rows="1"></input>
+          <input type="text" placeholder="new_username" name="new_username" id="new_username">
           <input type="submit">
         </form>
 
@@ -388,7 +388,7 @@ session_start();
   <div class="container_modification" id="modify_mail" style="visibility: hidden;">
 
         <form method="post">
-          <input type="email" placeholder="new_mail" name="new_mail" id="new_mail" cols="30" rows="1"></input>
+          <input type="email" placeholder="new_mail" name="new_mail" id="new_mail">
           <input type="submit">
         </form>
 
@@ -397,7 +397,7 @@ session_start();
   <div class="container_modification" id="modify_password" style="visibility: hidden;">
 
         <form method="post">
-          <input type="password" placeholder="new_password" name="new_password" id="new_password" cols="30" rows="1"></input>
+          <input type="password" placeholder="new_password" name="new_password" id="new_password">
           <input type="submit">
         </form>
 

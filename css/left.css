@@ -15,11 +15,6 @@
   border-bottom: var(--border_size);
 }
 
-@keyframes slide_left {
-  0%{margin-right: 100%;}
-  100%{margin-right: 0%;}
-}
-
 .left_button{
   border-radius: 80px;
   height: 9vh;
@@ -29,14 +24,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: slide_left 1s;
+  cursor: pointer;
 }
 
 .left_button:hover{
-  animation: left_hover 2s infinite;
+  animation: button_hover 2s infinite;
 }
 
-@keyframes left_hover {
+@keyframes button_hover {
   25%{
     background-color: #686868;
   }
@@ -69,10 +64,7 @@
   color: white;
 }
 
+
 a:link, a:visited {
   text-decoration: none;
-}
-
-a{
-  animation: slide_left 1s;
 }

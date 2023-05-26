@@ -1,0 +1,43 @@
+.horizontal_bar{
+  width: 55vw;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  height: 0.4vh;
+  animation: horizontal_bar_anim 2s infinite;
+}
+
+@keyframes horizontal_bar_anim {
+  0%{
+    background: linear-gradient(90deg, var(--pink_color) 0%, rgba(9,228,230,1) 100%);
+  }
+  10%{
+    background: linear-gradient(90deg, var(--pink_color) 20%, rgba(9,228,230,1) 100%);
+  }
+  20%{
+    background: linear-gradient(90deg, var(--pink_color) 40%, rgba(9,228,230,1) 100%);
+  }
+  30%{
+    background: linear-gradient(90deg, var(--pink_color) 60%, rgba(9,228,230,1) 100%);
+  }
+  40%{
+    background: linear-gradient(90deg, var(--pink_color) 80%, rgba(9,228,230,1) 100%);
+  }
+  50%{
+    background: linear-gradient(90deg, var(--pink_color) 100%, rgba(9,228,230,1) 100%);
+  }
+  60%{
+    background: linear-gradient(90deg, var(--pink_color) 80%, rgba(9,228,230,1) 100%);
+  }
+  70%{
+    background: linear-gradient(90deg, var(--pink_color) 60%, rgba(9,228,230,1) 100%);
+  }
+  80%{
+    background: linear-gradient(90deg, var(--pink_color) 40%, rgba(9,228,230,1) 100%);
+  }
+  90%{
+    background: linear-gradient(90deg, var(--pink_color) 20%, rgba(9,228,230,1) 100%);
+  }
+  100%{
+    background: linear-gradient(90deg, var(--pink_color) 0%, rgba(9,228,230,1) 100%);
+  }
+}

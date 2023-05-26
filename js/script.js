@@ -54,7 +54,7 @@ const hideMakePost=() =>{
 const checkTag =(event) =>{
   let el = event.target                   //EL EST LE TAG QUI A ETE CLIQUE
   if (el.style.backgroundColor === ""){   //SI IL N A PAS ETE CHOISI
-    el.style.backgroundColor = "#00aa00"  //CHANGEMENT LA BCKGRD COLOR
+    el.style.backgroundColor = "#28A228"  //CHANGEMENT LA BCKGRD COLOR
     active_tag.push(el.classList[0])      //AJOUT A LA LISTE DES TAG ACTIFS
     const style = getComputedStyle(el)    //RECUPERATION DU CSS DU TAG
     let color_tag = style.color           //RECUPERATION DE LA COULEUR DU TAG

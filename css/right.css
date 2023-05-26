@@ -33,17 +33,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: slide_right 1s;
   transition: 1s;
-}
-
-@keyframes slide_right {
-  0%{margin-left: 100%;}
-  100%{margin-left: 0%;}
+  cursor: pointer;
 }
 
 .tag:hover{
   animation: select 2s infinite;
+  cursor: pointer;
 }
 
 @keyframes select {

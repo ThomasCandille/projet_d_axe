@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 
 </head>
@@ -156,7 +156,7 @@ session_start();
 
       <div id="container_post_txt">
 
-        <textarea placeholder="Ecrire ici" name="post" id="post_txt" cols="30" rows="50"></textarea>
+        <textarea placeholder="Ecrire ici ..." name="post" id="post_txt" cols="30" rows="50" required></textarea>
         
       </div>
 
@@ -170,7 +170,7 @@ session_start();
 
         <div>
 
-          <select name="tag_selector" id="tag_selector">
+          <select name="tag_selector" id="tag_selector" required>
 
             <option value=""> Select a tag</option>
             <option class="HTML" value="HTML"> HTML </option>
@@ -210,7 +210,7 @@ session_start();
       $pdo = new PDO('mysql:host=localhost;dbname=projet_d_axe','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
       //SI QQN DE CO FAIT UN POST
-      if(isset($_POST['post_made']) && isset($_SESSION['pseudo'])){
+      if(isset($_POST['post_made']) && isset($_SESSION['pseudo']) && $_POST['post'] != '' && $_POST['tag_selector'] != ''){
         $message = addslashes($_POST['post']);
         $like = 0;
         //RECUPERATION DU TAG SELECTIONNE
@@ -296,11 +296,11 @@ session_start();
 
           </div>
 
-          <article class="post_content">
+          <div class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </article>
+          </div>
 
           ';
           ?>
@@ -309,11 +309,11 @@ session_start();
 
           if($mess['post_file']){
           echo'
-          <section class="container_img_post">
+          <div class="container_img_post">
 
           <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
-          </section>';
+          </div>';
                 }
           
           ?>
@@ -331,7 +331,7 @@ session_start();
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" onmouseover="this.src=\'img/open_bin.svg\';"onmouseout="this.src=\'img/closed_bin.svg\'"; alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>
@@ -483,7 +483,7 @@ else{
 }
 
 ?>
-
+</p>
 <div id="connect_toi_txt">
 <p>
   Tu veux voir plus de contenu ?<br>
@@ -500,7 +500,7 @@ else{
 </div>
 </a>
 
-</p>
+
 
 
 

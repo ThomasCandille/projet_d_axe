@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 
 </head>
@@ -241,11 +241,11 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
           </div>
 
-          <article class="post_content">
+          <div class="post_content">
 
             <p> '.$mess['post_text'].' </p>
 
-          </article>
+          </div>
 
           ';
           ?>
@@ -254,11 +254,11 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
           if($mess['post_file']){
           echo'
-          <section class="container_img_post">
+          <div class="container_img_post">
 
           <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
-          </section>';
+          </div>';
                 }
           
           ?>
@@ -276,7 +276,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" onmouseover="this.src=\'img/open_bin.svg\';" onmouseout="this.src=\'img/closed_bin.svg\'"; alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>
@@ -301,9 +301,9 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
   <img id="leave_mobile_menu" src="img/cross.png" alt="sandwich menu">
 
-  <aside id="right">
+  <div id="right">
 
-  </aside>
+  </div>
 
   <script src="js/profil.js"></script>
 </body>
