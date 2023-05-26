@@ -1,0 +1,35 @@
+#verif_suppr{
+  background-color: #131313;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 40vw;
+  height: 20vh;
+  left: 30vw;
+  top: 40vh;
+}
+
+#verif_suppr_proposition{
+  display: flex;
+  width: 20vw;
+  justify-content: space-around;
+}
+
+#suppr_oui{
+  background-color: #004e33;
+  border-radius: 20px;
+  height: 3vh;
+  width: 8vw;
+  text-align: center;
+}
+
+#suppr_non{
+  background-color: #4e0000;
+  border-radius: 20px;
+  height: 3vh;
+  width: 8vw;
+  text-align: center;
+}

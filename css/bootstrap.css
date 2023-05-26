@@ -1,0 +1,14 @@
+.center_bootstrap_element{
+  display: flex;
+  justify-content: center;
+}
+
+.bootstrap_text{
+  color: white;
+  text-align: center;
+}
+
+.bootstrap_position{
+  background-color: #353535;
+  border-radius: 75px;
+}

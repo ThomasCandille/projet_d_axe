@@ -1,0 +1,21 @@
+#connect_toi{
+  background-color: #131313;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 40vw;
+  height: 50vh;
+  left: 30vw;
+  top: 30vh;
+}
+
+#connect_toi_txt{
+  margin: 2vw 5vh 2vw 5vh;
+}
+
+.blur{
+  filter: blur(5px);
+}

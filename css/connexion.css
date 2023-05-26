@@ -1,0 +1,23 @@
+#connection_page{
+  margin-top: 5vh;
+  width: 50vw;
+  height: 20vh;
+  text-align: center;
+  color: white;
+}
+
+#button_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.button_subscribe_page{
+  height: 8vh;
+  width: 20vw;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2vw;
+} 

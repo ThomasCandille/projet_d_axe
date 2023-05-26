@@ -1,0 +1,27 @@
+#container_profil{
+  margin-top: 5vh;
+  background-color: #2f2f2f;
+  width: 50vw;
+  border-radius: 100px 0 100px 0;
+}
+
+#container_header_profil{
+  height: 15vh;
+  margin: 3vh 0 3vh 2vw;
+  display: flex;
+  flex-direction: row;
+}
+
+#container_header_profil > p{
+  margin: 0;
+}
+
+.container_info_profil{
+  width: 45vw;
+  height: 10vh;
+  margin-left: 2vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

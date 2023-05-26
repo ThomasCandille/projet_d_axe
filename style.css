@@ -1,0 +1,41 @@
+@import url(css/responsive.css);
+@import url(css/bootstrap.css);
+@import url(css/left.css);
+@import url(css/right.css);
+@import url(css/post.css);
+@import url(css/profil_page.css);
+@import url(css/mid.css);
+@import url(css/make_post.css);
+@import url(css/connect_toi.css);
+@import url(css/connexion.css);
+@import url(css/modal_suppr.css);
+@import url(css/pseudo.css);
+
+*,*::before,*::after{
+  box-sizing: border-box;
+  font: small-caps bold 24px/1 sans-serif;
+  font-weight: bold;
+}
+
+:root{
+  --side_size : 19.8vw;
+  --border_size : 0.2vw;
+  --settings_button_width : 15vw;
+  --settings_button_height : 12vh;
+  --backgroud_color : #131313;
+  --pink_color : #E09ECE;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+  color: white;
+  background-color: var(--backgroud_color);
+}
+
+.hidden{
+  visibility:collapse;
+  height: 0;
+  width: 0;
+}
+
