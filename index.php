@@ -242,7 +242,7 @@ session_start();
           //SI VERIFICATION PAS OK -> PAS DE files
 
           //TELECHARGEMENT DU MEDIA DANS LES FICHIERS
-          move_uploaded_file($file_tmp, "img/".$file_name);
+          move_uploaded_file($file_tmp, "img_post/".$file_name);
         }
         //SI PAS DE MEDIA -> PAS DE files
         else{
@@ -311,7 +311,7 @@ session_start();
           echo'
           <section class="container_img_post">
 
-          <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+          <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
           </section>';
                 }
@@ -331,7 +331,7 @@ session_start();
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>

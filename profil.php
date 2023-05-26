@@ -281,6 +281,8 @@ session_start();
         array_push($array_post, $mess);
         }
 
+        $array_post = array_reverse($array_post);
+
         //AFFICHAGE DES POSTS
         foreach($array_post as $mess){
           echo
@@ -316,7 +318,7 @@ session_start();
           echo'
           <section class="container_img_post">
 
-          <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+          <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
           </section>';
                 }
@@ -336,7 +338,7 @@ session_start();
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>

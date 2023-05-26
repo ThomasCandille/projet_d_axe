@@ -256,7 +256,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
           echo'
           <section class="container_img_post">
 
-          <img class="imported_img" src="img/'.$mess['post_file'].'" alt="Image">
+          <img class="imported_img" src="img_post/'.$mess['post_file'].'" alt="Image">
 
           </section>';
                 }
@@ -276,7 +276,7 @@ $r = $pdo->query('SELECT * FROM user WHERE user_name = \''. $_GET['profil'].'\''
 
             ';
             if(isset($_SESSION['id']) && $_SESSION['id'] == $mess['user_id']){
-              echo '<img class="poubelle" src="img/pbl.png" alt="poubelle" id="'.$mess['post_id'].'">';
+              echo '<img class="poubelle" src="img/closed_bin.svg" alt="poubelle" id="'.$mess['post_id'].'">';
             }
             echo '
             </footer>
